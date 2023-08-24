@@ -19,9 +19,9 @@ def email_reduction(file_path):
 
     # Group words to condense them. (ex: Running -> Run)
     lemmatizer = WordNetLemmatizer()
-
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
 
+    # Join all the tokens together into one string
     preprocessed_email = " ".join(lemmatized_tokens)
     return preprocessed_email
 
