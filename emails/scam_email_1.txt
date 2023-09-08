@@ -1,0 +1,7 @@
+Following changes to our Microsoft email systems, each user must authenticate their account to prevent it from being deactivated. You can accomplish this by heading to the link below and entering your Microsoft Outlook email account credentials, and then we will know your account is active and should remain so.
+
+http://www.microsoft.com/.
+
+Thank you,
+Information Technology
+Helpdesk Support Team
