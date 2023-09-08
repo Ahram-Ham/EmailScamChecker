@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas
 import os
 import EmailCleaner
 import TermFrequencyInverseDocumentFrequency
@@ -14,4 +14,3 @@ if __name__ == '__main__':
         returnString = EmailCleaner.email_reduction(email_text)
         corpus.append(returnString)
         TermFrequencyInverseDocumentFrequency.tf_idf(corpus)
-
