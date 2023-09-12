@@ -10,3 +10,5 @@ def tf_idf(corpus):
     """print('\nidf values:')
     for ele1, ele2 in zip(tfidf.get_feature_names_out(), tfidf.idf_):
         print(ele1,  ':', ele2)"""
+
+
