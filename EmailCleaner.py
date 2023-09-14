@@ -11,8 +11,6 @@ nltk.download('stopwords')
 nltk.download('wordnet')"""
 
 
-
-
 def email_reduction(file_path):
     with open(file_path, "r") as file:
         email_text = file.read()
