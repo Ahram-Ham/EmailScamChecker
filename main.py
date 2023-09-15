@@ -18,17 +18,16 @@ def create_model():
         corpus.append(return_string)
         val = TermFrequencyInverseDocumentFrequency.tf_idf([return_string])  # TF-IDF for a single email
         vals.append(val[0])  # TF-IDF matrix is a list of lists, so take the first list
-        labels.append(0)
+        labels.append(1)
 
     print('In Progress...')
     for email in os.listdir('nonscam_emails'):
         email_text = 'nonscam_emails/' + email
-        print(email_text)
         return_string = EmailCleaner.email_reduction(email_text)
         corpus.append(return_string)
         val = TermFrequencyInverseDocumentFrequency.tf_idf([return_string])  # TF-IDF for a single email
         vals.append(val[0])  # TF-IDF matrix is a list of lists, so take the first list
-        labels.append(1)
+        labels.append(0)
 
     max_email_length = get_max_len(vals)
     vals = feature_engineering(vals, max_email_length)
@@ -37,8 +36,26 @@ def create_model():
 
 
 def run_model():
-    # TODO: FILL THIS OUT
-    print('Do nothing')
+    corpus = []
+    vals = []
+    emails_to_predict = []
+    loaded_svm_model = load('model/svm_model.joblib')
+    for email in os.listdir('unassigned_emails'):
+        email_text = 'unassigned_emails/' + email
+        with open(email_text, "r") as file:
+            text = file.read()
+        emails_to_predict.append(text)
+        return_string = EmailCleaner.email_reduction(email_text)
+        corpus.append(return_string)
+        val = TermFrequencyInverseDocumentFrequency.tf_idf([return_string])
+        vals.append(val[0])
+    feature_vectors = feature_engineering(vals, 194)
+
+    predictions = loaded_svm_model.predict(feature_vectors)
+    for i, prediction in enumerate(predictions):
+        email_text = emails_to_predict[i]
+        print(f"Email {i + 1}: Predicted Label - {prediction}, Email Text: \n{email_text}")
+        print("\n" + "----------------------------------------------------------" + "\n")
 
 
 def get_max_len(vals):
@@ -69,6 +86,4 @@ def feature_engineering(vals, max_email_length):
 
 
 if __name__ == '__main__':
-    create_model()
-
-
+    run_model()
