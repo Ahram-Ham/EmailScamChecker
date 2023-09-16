@@ -5,7 +5,6 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 # If this is first time running program, then uncomment to download needed resources
-
 """nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')"""

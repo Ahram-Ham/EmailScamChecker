@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.model_selection import StratifiedShuffleSplit
 import os
 
+
 # Corpus contains tf-idf values, while labels contains binary numbers with 0 being a scam and 1 being a non-scam
 def svm(corpus, labels):
     svm_classifier = SVC(kernel='linear')
@@ -39,6 +40,6 @@ def shuffle_data_and_labels(data, labels):
         raise ValueError('Data and labels must have the same length')
 
     data_and_labels = list(zip(data, labels))
-    random.shuffle(data_and_labels)
-    shuffled_data, shuffled_labels = zip(*data_and_labels)
+    random.shuffle(data_and_labels)  # Shuffle data with the labels still associated to each data
+    shuffled_data, shuffled_labels = zip(*data_and_labels)  # Unzip and return two lists
     return list(shuffled_data), list(shuffled_labels)
